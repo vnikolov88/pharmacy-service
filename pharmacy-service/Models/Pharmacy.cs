@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PharmacyService.Models
 {
-    public class GeocraphicalPoint
+    public class GeographicalPoint
     {
         public string Latitude { get; set; }
         public string Longitude { get; set; }
@@ -11,7 +11,7 @@ namespace PharmacyService.Models
 
     public class PharmacyLocation
     {
-        public GeocraphicalPoint GeocraphicalPoint { get; set; }
+        public GeographicalPoint GeographicalPoint { get; set; }
         public string Street { get; set; }
         public string Zip { get; set; }
         public string City { get; set; }
