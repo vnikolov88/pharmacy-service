@@ -2,13 +2,27 @@
 
 namespace PharmacyService.Models
 {
-    class ApotekenDEResponse
+    #region Pharmacies
+    class ApotekenDEPharmacyResponse
     {
         public IDictionary<string, Pharmacy> Pharmacies { get; set; }
     }
 
-    class AppotekenDE
+    class AppotekenDEPharmacy
     {
-        public ApotekenDEResponse Response { get; set; }
+        public ApotekenDEPharmacyResponse Response { get; set; }
     }
+    #endregion Pharmacies
+
+    #region Articles
+    class ApotekenDEArticleResponse
+    {
+        public IDictionary<string, Article> HealthTodayArticle { get; set; }
+    }
+
+    class AppotekenDEArticle
+    {
+        public ApotekenDEArticleResponse Response { get; set; }
+    }
+    #endregion Articles
 }
