@@ -13,7 +13,9 @@ namespace PharmacyService
         public string DoctorHelpRestUrl { get; set; }
         public string OSMRestUrl { get; set; }
         public string PharmacySource { get; set; }
-        public string Token { get; set; }
+        public string PharmacyServiceToken { get; set; }
+        public string ArticleSource { get; set; }
+        public string ArticleServiceToken { get; set; }
     }
 
     public class Startup
@@ -33,6 +35,8 @@ namespace PharmacyService
             services.Configure<StartupOptions>(Configuration);
             services.AddMemoryCache();
             services.AddSingleton<ILocationService, LocationServiceByDoctorHelp>();
+            services.AddSingleton<IPharmacyService, PharmacyServiceByApothekenDE>();
+            services.AddSingleton<IArticleService, ArticleServiceByApothekenDE>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
