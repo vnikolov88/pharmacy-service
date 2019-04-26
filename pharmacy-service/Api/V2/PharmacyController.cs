@@ -39,7 +39,7 @@ namespace PharmacyService.Api.V2
             (double latitude, double longitude) = await _locationService.GetLocationAsync(decodedAddress, cancellationToken);
             
             var pharmacies = await _pharmacyService.GetPharmaciesAsync(latitude, longitude, distanceKm, cancellationToken);
-            return pharmacies?.Where(x => x.OpeningTimes.Count > 0).Page(page, pageSize);
+            return pharmacies?.Page(page, pageSize);
         }
 
         [HttpGet("list-emergency")]
@@ -54,7 +54,7 @@ namespace PharmacyService.Api.V2
             (double latitude, double longitude) = await _locationService.GetLocationAsync(decodedAddress, cancellationToken);
 
             var pharmacies = await _pharmacyService.GetEmergencyPharmaciesAsync(latitude, longitude, distanceKm, cancellationToken);
-            return pharmacies?.Where(x => x.OpeningTimes.Count > 0).Page(page, pageSize);
+            return pharmacies?.Page(page, pageSize);
         }
     }
 }

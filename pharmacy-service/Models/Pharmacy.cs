@@ -48,5 +48,7 @@ namespace PharmacyService.Models
         public double DistanceMetric { get; set; }
         public IDictionary<string, PharmacyElectronicAddress> ElectronicAddresses { get; set; }
         public PharmacyElectronicAddress PrimaryEmail { get; set; }
+        public PharmacyOpeningTimeDate StartDateTime { get; set; }
+        public PharmacyOpeningTimeDate EndDateTime { get; set; }
     }
 }

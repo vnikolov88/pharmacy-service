@@ -31,10 +31,13 @@ namespace PharmacyService.Services
         {
             var now = DateTime.Now;
 
-            var returned = await $"{_options.PharmacySource}/api/{_options.PharmacyServiceToken}/notdienst.json?&search[radius]={distanceKm}&search[offset]={0}&search[sort]={1}&search[location][geographicalPoint][latitude]={latitude}&search[location][geographicalPoint][longitude]={longitude}&search[startDateTime]={now.Date.ToString("yyyy-MM-dd HH:mm:ss")}&search[endDateTime]={now.Date.AddDays(1).AddSeconds(-1).ToString("yyyy-MM-dd HH:mm:ss")}"
+            var startDateTime = now.Date.ToString("yyyy-MM-dd HH:mm:ss");
+            var endDateTime = now.Date.AddDays(1).AddSeconds(-1).ToString("yyyy-MM-dd HH:mm:ss");
+
+            var returned = await $"{_options.PharmacySource}/api/{_options.PharmacyServiceToken}/notdienst.json?&search[radius]={distanceKm}&search[offset]={0}&search[sort]={1}&search[location][geographicalPoint][latitude]={latitude}&search[location][geographicalPoint][longitude]={longitude}&search[startDateTime]={startDateTime}&search[endDateTime]={endDateTime}"
                 .GetJsonAsync<AppotekenDEPharmacy>(cancellationToken);
 
-            return returned?.Response?.Pharmacies?.Select(x => x.Value);
+            return returned?.Response?.Pharmacies?.Select(x => x.Value)?.Where(x => x.EndDateTime.Date.Date != now.Date.Date);
         }
 
     }
